@@ -6,10 +6,7 @@ function formatString(input: string, toUpper?: boolean): string {
   }
 }
 
-// console.log(formatString("Hello"),
-// formatString("Hello", true)  ,
-// formatString("Hello", false)
-// );
+
 
 type Items = {
   title: string;
@@ -25,15 +22,6 @@ function filterByRating(items: ItemsOfArray): ItemsOfArray {
   return highestRatings;
 }
 
-// const books = [
-//   { title: "Book A", rating: 4.5 },
-//   { title: "Book B", rating: 9.2 },
-//   { title: "Book C", rating: 8.9 }
-// ];
-
-// console.log(filterByRating(books));
-// Output: [ { title: "Book A", rating: 4.5 }, { title: "Book C", rating: 5.0 } ]
-
 function concatenateArrays<T>(...arrays: T[][]): T[] {
   let array: T[] = [];
   arrays.forEach((singleArray) =>
@@ -42,9 +30,6 @@ function concatenateArrays<T>(...arrays: T[][]): T[] {
   return array;
 }
 
-const b = concatenateArrays(["a", "b"], ["c"]); // Output: ["a", "b", "c"]
-const a = concatenateArrays([1, 2], [3, 4], [5]); // Output: [1, 2, 3, 4, 5]
-// console.table({a,b})
 
 class Vehicle {
   private make: string;
@@ -68,9 +53,7 @@ class Car extends Vehicle {
     return `"Model : ${this.model}"`;
   }
 }
-const car = new Car("Toyota", 2002, "Corolla");
-car.getInfo();
-car.getModel();
+
 
 function processValue(value: string | number): number {
   if (typeof value === "string") {
@@ -80,25 +63,45 @@ function processValue(value: string | number): number {
   }
 }
 
-processValue("hello");
-processValue(10);
-
 interface Product {
   name: string;
   price: number;
 }
 
 function getMostExpensiveProduct(products: Product[]): Product | null {
-  if(products.length === 0) return null;
+  if (products.length === 0) return null;
 
-  return products.reduce((maxProduct:Product, currentProduct: Product)=> currentProduct.price > maxProduct.price ? currentProduct: maxProduct)
+  return products.reduce((maxProduct: Product, currentProduct: Product) =>
+    currentProduct.price > maxProduct.price ? currentProduct : maxProduct
+  );
 }
 
-const products = [
-  { name: "Pen", price: 0 },
-  { name: "Notebook", price: 99 },
-  { name: "Bag", price: 1 },
-];
+enum Day {
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+  Sunday,
+}
 
-// console.log(getMostExpensiveProduct(products));
-// Output: { name: "Bag", price: 50 }
+function getDayType(day: Day): "Weekday" | "Weekend" {
+  if (day === Day.Sunday) {
+    return "Weekend";
+  } else {
+    return "Weekday";
+  }
+}
+
+async function squareAsync(n: number): Promise<number> {
+  return await new Promise((resolve, reject) => {
+    if (n >= 0) {
+      setTimeout(() => {
+        resolve(n * n);
+      }, 1000);
+    } else {
+      reject("Negative number not allowed!");
+    }
+  });
+}
